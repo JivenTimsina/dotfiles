@@ -1,16 +1,21 @@
 # Create a directory and then cd into it
 mkcd() {
+  #return if directory already exist
+  if [ -d "$1" ]; then
+    echo "file already exist"
+    return 1;
+  fi
   mkdir -p "$1" && cd "$1" || echo "failed to create/navigate"
 }
 
 #install packages
 install() {
-  sudo apt-get install $1 -y
+  sudo pacman -S $1 -y
 }
 
 #remove packages
 remove() {
-  sudo apt remove --purge $1 -y
+  sudo pacman -R $1 -y
 }
 
 # Extract various compressed file types

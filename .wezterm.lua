@@ -33,7 +33,7 @@ config.window_padding = {
 }
 
 --window opacity (not useful while using background image)
-config.window_background_opacity = 0.6
+config.window_background_opacity = 1.0
 
 --text background opacity
 config.text_background_opacity = 0.8

@@ -1,7 +1,10 @@
 #source
-. ~/.dotfiles/zsh/custom-theme
+
+. ~/.dotfiles/zsh/theme
 . ~/.dotfiles/zsh/functions
 . ~/.dotfiles/zsh/aliases
+
+#plugins
 . ~/.dotfiles/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh
 . ~/.dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 . ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

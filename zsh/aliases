@@ -4,7 +4,7 @@ alias less='less --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# ls aliases
+# ls
  alias ll='ls -alF'
  alias la='ls -A'
  alias l='ls -l'
@@ -25,6 +25,4 @@ alias gps='git push'
  alias ..='cd ..'
  alias ...='cd ../..'
  alias nv='nvim'
- alias update='sudo apt update && sudo apt upgrade -y'
- alias logout='loginctl terminate-session $XDG_SESSION_ID'
  alias cat='bat'

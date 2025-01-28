@@ -12,7 +12,7 @@ set mouse=a "enable mouse support
 syntax on "enable syntax
 "highlight current line
 set cursorline
-:highlight Cursorline cterm=bold ctermbg=black
+:highlight Cursorline cterm=bold ctermbg=white
 
 "smartcase search
 set ignorecase
@@ -52,7 +52,7 @@ let NERDTreeShowHidden=1 "show hidden files in nerdtree
 "nordtree
 nnoremap <silent><leader>e :NERDTreeToggle<CR>
 "toggle terminal
-nnoremap <silent><C-t> :below term<CR>
+nnoremap <silent><C-/> :below term<CR>
 "select all
 nnoremap <C-a> ggvG$ "select all
 "copy to clipboard
