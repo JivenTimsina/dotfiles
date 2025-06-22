@@ -9,10 +9,10 @@ local config = wezterm.config_builder()
 -- Enable wayland support explicitly
 config.enable_wayland = true
 
-config.color_scheme = "nord"
+config.color_scheme = "catppuccin-mocha"
 
 -- disable header
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 
 -- use a normal tab bar
 config.use_fancy_tab_bar = false
@@ -32,15 +32,14 @@ config.window_padding = {
 	bottom = 0,
 }
 
---window opacity (not useful while using background image)
 config.window_background_opacity = 1.0
 
 --text background opacity
-config.text_background_opacity = 0.8
+config.text_background_opacity = 1.0
 
 --font settings
 config.font = wezterm.font("JetBrains Mono", { weight = "Light" })
-config.font_size = 13.0
+config.font_size = 14.0
 
 config.default_cursor_style = "SteadyUnderline"
 
