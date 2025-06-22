@@ -1,0 +1,70 @@
+# Create a directory and then cd into it
+mkcd() {
+  #return if directory already exist
+  if [ -d "$1" ]; then
+    echo "file already exist"
+    return 1;
+  fi
+  mkdir -p "$1" && cd "$1" || echo "failed to create/navigate"
+}
+
+#install packages
+install() {
+  sudo pacman -S $1 -y
+}
+
+#remove packages
+remove() {
+  sudo pacman -R $1 -y
+}
+
+# Extract various compressed file types
+extract() {
+  if [ -f "$1" ]; then
+    case "$1" in
+      *.tar.bz2)   tar xjf "$1"   ;;
+      *.tar.gz)    tar xzf "$1"   ;;
+      *.bz2)       bunzip2 "$1"   ;;
+      *.rar)       unrar x "$1"   ;;
+      *.gz)        gunzip "$1"    ;;
+      *.tar)       tar xf "$1"    ;;
+      *.tbz2)      tar xjf "$1"   ;;
+      *.tgz)       tar xzf "$1"   ;;
+      *.zip)       unzip "$1"     ;;
+      *.Z)         uncompress "$1";;
+      *.7z)        7z x "$1"      ;;
+      *)           echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# open current git repository in github 
+gopen() {
+  # Get the remote URL of the Git repository
+  remote_url=$(git config --get remote.origin.url 2>/dev/null)
+
+  # Check if inside a Git repository
+  if [[ -z "$remote_url" ]]; then
+    echo "Not a Git repository!"
+    return 1
+  fi
+
+  # Extract GitHub repository URL
+  github_url=$(echo "$remote_url" | sed -E 's/^git@github.com:/https:\/\/github.com\//; s/\.git$//')
+
+  # Open the GitHub URL
+    xdg-open "$github_url"
+}
+
+#yazi
+function y(){
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
