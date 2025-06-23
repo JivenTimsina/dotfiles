@@ -39,7 +39,7 @@ config.text_background_opacity = 1.0
 
 --font settings
 config.font = wezterm.font("JetBrains Mono", { weight = "Light" })
-config.font_size = 14.0
+config.font_size = 14.
 
 config.default_cursor_style = "SteadyUnderline"
 
