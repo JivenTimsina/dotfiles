@@ -37,3 +37,7 @@ ln -sf ~/.dotfiles/jome ~/.config/jome
 
 #tofi
 ln -sf ~/.dotfiles/tofi ~/.config/tofi
+
+#greed needs sudo previlage
+
+sudo ln -sf ~/.dotfiles/greetd /etc/greetd
