@@ -1,7 +1,15 @@
-#!/bin/zsh
+#!/bin/bash
+
+packages=(
+    hyprland
+    waybar
+    wezterm
+    zsh
+    greetd-tuigreet
+
+)
 
 #symlinks
-
 # wezterm
 ln -sf ~/.dotfiles/.wezterm.lua ~/.wezterm.lua
 
@@ -13,9 +21,6 @@ ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
 
 #vim
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
-
-#kitty
-ln -sf ~/.dotfiles/kitty ~/.config/kitty
 
 #hyprland
 ln -sf ~/.dotfiles/hypr ~/.config/hypr
@@ -39,5 +44,4 @@ ln -sf ~/.dotfiles/jome ~/.config/jome
 ln -sf ~/.dotfiles/tofi ~/.config/tofi
 
 #greed needs sudo previlage
-
 sudo ln -sf ~/.dotfiles/greetd /etc/greetd
