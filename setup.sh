@@ -1,47 +1,80 @@
 #!/bin/bash
 
+set -e # Exit on any error
+
+#install base-devel and git if not already present
+sudo pacman -S --needed --noconfirm git base-devel
+
+# yay
+if ! command -v yay &>/dev/null; then
+    echo "Installing yay..."
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    #build and install yay
+    cd /tmp/yay
+    makepkg -si --noconfirm
+    #clean up
+    cd ~
+    rm -rf /tmp/yay
+fi
+
 packages=(
-    hyprland
-    waybar
+    git
+    curl
+    hyprland-git
+    hypridle
     wezterm
+    vim
+    neovim
+    obsidian
+    hyprpicker
+    discord
+    spotify
     zsh
     greetd-tuigreet
-
+    fastfetch
+    zen-browser
+    swww
+    tofi
+    dunst
+    jome
+    rofi-lbonn-wayland
 )
 
-#symlinks
-# wezterm
-ln -sf ~/.dotfiles/.wezterm.lua ~/.wezterm.lua
+#install packages
+echo "Installing packages..."
+yay -S --noconfirm "${packages[@]}"
 
-# neovim
-ln -sf ~/.dotfiles/nvim ~/.config/nvim
+echo "Changing default shell to zsh..."
+#change shell
+chsh -s "$(which zsh)"
 
-#zsh
-ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
+# Disable conflicting display managers
+echo "Disabling common display managers..."
+sudo systemctl disable sddm.service lightdm.service gdm.service ly.service 2>/dev/null
 
-#vim
-ln -sf ~/.dotfiles/.vimrc ~/.vimrc
+# enable greetd
+echo "Enabling greetd-tui..."
+sudo systemctl enable greetd.service
+sudo systemctl start greetd.service
 
-#hyprland
-ln -sf ~/.dotfiles/hypr ~/.config/hypr
+# create symlinks
+DOTFILES="$HOME/.dotfiles"
+if [[ ! -d "$DOTFILES" ]]; then
+    echo "Dotfiles folder not found at $DOTFILES"
+    exit 1
+fi
 
-#waybar
-ln -sf ~/.dotfiles/waybar ~/.config/waybar
+echo "Creating symlinks..."
 
-# fastfetch
-ln -sf ~/.dotfiles/fastfetch ~/.config/fastfetch
-
-#dunst
-ln -sf ~/.dotfiles/dunst ~/.config/dunst
-
-#rofi
-ln -sf ~/.dotfiles/rofi ~/.config/rofi
-
-#jome
-ln -sf ~/.dotfiles/jome ~/.config/jome
-
-#tofi
-ln -sf ~/.dotfiles/tofi ~/.config/tofi
-
-#greed needs sudo previlage
-sudo ln -sf ~/.dotfiles/greetd /etc/greetd
+ln -sf "$DOTFILES/wezterm/wezterm.lua" ~/.wezterm.lua
+ln -sf "$DOTFILES/nvim" ~/.config/nvim
+ln -sf "$DOTFILES/zsh/.zshrc" ~/.zshrc
+ln -sf "$DOTFILES/vim/vimrc" ~/.vimrc
+ln -sf "$DOTFILES/hypr" ~/.config/hypr
+ln -sf "$DOTFILES/waybar" ~/.config/waybar
+ln -sf "$DOTFILES/fastfetch" ~/.config/fastfetch
+ln -sf "$DOTFILES/dunst" ~/.config/dunst
+ln -sf "$DOTFILES/rofi" ~/.config/rofi
+ln -sf "$DOTFILES/jome" ~/.config/jome
+ln -sf "$DOTFILES/tofi" ~/.config/tofi
+sudo ln -sf "$DOTFILES/greetd" /etc/greetd
