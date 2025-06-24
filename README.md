@@ -5,6 +5,7 @@
 - **Terminal:**`wezterm`
 - **Shell:**`zsh`
 - **Editor:**`nvim, vim`
+## ScreenShot
 ## ![ScreenShot](example/2025-06-24T10:11:43,891156516+05:45.png)
 
 ## Use this config
