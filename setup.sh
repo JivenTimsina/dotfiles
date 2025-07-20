@@ -7,37 +7,38 @@ sudo pacman -S --needed --noconfirm git base-devel
 
 # yay
 if ! command -v yay &>/dev/null; then
-    echo "Installing yay..."
-    git clone https://aur.archlinux.org/yay.git /tmp/yay
-    #build and install yay
-    cd /tmp/yay
-    makepkg -si --noconfirm
-    #clean up
-    cd ~
-    rm -rf /tmp/yay
+  echo "Installing yay..."
+  git clone https://aur.archlinux.org/yay.git /tmp/yay
+  #build and install yay
+  cd /tmp/yay
+  makepkg -si --noconfirm
+  #clean up
+  cd ~
+  rm -rf /tmp/yay
 fi
 
 packages=(
-    git
-    curl
-    hyprland-git
-    hypridle
-    wezterm
-    vim
-    neovim
-    obsidian
-    hyprpicker
-    discord
-    spotify
-    zsh
-    greetd-tuigreet
-    fastfetch
-    zen-browser
-    swww
-    tofi
-    dunst
-    jome
-    rofi-lbonn-wayland
+  git
+  curl
+  hyprland-git
+  hypridle
+  wezterm
+  vim
+  neovim
+  obsidian
+  hyprpicker
+  discord
+  spotify
+  zsh
+  greetd-tuigreet
+  fastfetch
+  zen-browser
+  swww
+  tofi
+  dunst
+  jome
+  rofi-lbonn-wayland
+  zathura
 )
 
 #install packages
@@ -60,8 +61,8 @@ sudo systemctl start greetd.service
 # create symlinks
 DOTFILES="$HOME/.dotfiles"
 if [[ ! -d "$DOTFILES" ]]; then
-    echo "Dotfiles folder not found at $DOTFILES"
-    exit 1
+  echo "Dotfiles folder not found at $DOTFILES"
+  exit 1
 fi
 
 echo "Creating symlinks..."
@@ -77,4 +78,5 @@ ln -sf "$DOTFILES/dunst" ~/.config/dunst
 ln -sf "$DOTFILES/rofi" ~/.config/rofi
 ln -sf "$DOTFILES/jome" ~/.config/jome
 ln -sf "$DOTFILES/tofi" ~/.config/tofi
+ln -sf "$DOTFILES/zathura" ~/.config/zathura
 sudo ln -sf "$DOTFILES/greetd" /etc/greetd
