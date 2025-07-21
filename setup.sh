@@ -23,6 +23,9 @@ packages=(
   hyprland-git
   hypridle
   wezterm
+  eza
+  bat
+  yazi
   vim
   neovim
   obsidian
