@@ -10,3 +10,6 @@
 [submodule "nord-wallpaper"]
 	path = nord-wallpaper
 	url = https://github.com/JivenTimsina/nord-wallpaper
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/JivenTimsina/nvim.git
