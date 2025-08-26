@@ -5,6 +5,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # ls
+ alias ls='ls --color=auto'
  alias ll='ls -alF'
  alias la='ls -A'
  alias l='ls -l'
@@ -19,6 +20,7 @@ alias gco='git checkout'
 alias gcl='git clone'
 alias gpl='git pull'
 alias gps='git push'
+alias lg='lazygit'
 
 # custom
  alias ls='eza --icons=always'

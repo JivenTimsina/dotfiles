@@ -1,5 +1,4 @@
 #source
-
 . ~/.dotfiles/zsh/theme
 . ~/.dotfiles/zsh/functions
 . ~/.dotfiles/zsh/aliases
@@ -20,7 +19,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
 bindkey -v
 
 # bindkey to accept suggestation
-bindkey '?' autosuggest-accept
+bindkey '^_' autosuggest-accept
 
 # history
 HISTSIZE=1000

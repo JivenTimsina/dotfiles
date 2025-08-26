@@ -10,6 +10,6 @@ target_ws=$((current_ws + 1))
 
 # Only switch if within allowed range
 if ((target_ws <= MAX_WS)); then
-    hyprctl dispatch workspace "$target_ws"
+  hyprctl dispatch workspace "$target_ws"
 fi
 yprctl dispatch workspace "$target_ws"

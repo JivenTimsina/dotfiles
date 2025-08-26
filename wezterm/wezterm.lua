@@ -9,7 +9,7 @@ local config = wezterm.config_builder()
 -- Enable wayland support explicitly
 config.enable_wayland = true
 
-config.color_scheme = "catppuccin-mocha"
+config.color_scheme = "nord"
 
 -- disable header
 config.window_decorations = "NONE"
@@ -23,10 +23,10 @@ config.tab_and_split_indices_are_zero_based = true
 -- show tab bar only when a new tab is created
 config.hide_tab_bar_if_only_one_tab = true
 
-config.adjust_window_size_when_changing_font_size = true
+config.adjust_window_size_when_changing_font_size = false
 
 config.window_padding = {
-	left = 10,
+	left = 8,
 	right = 0,
 	top = 0,
 	bottom = 0,
@@ -38,8 +38,8 @@ config.window_background_opacity = 1.0
 config.text_background_opacity = 1.0
 
 --font settings
-config.font = wezterm.font("JetBrains Mono", { weight = "Light" })
-config.font_size = 14
+config.font = wezterm.font("JetBrains Mono NL")
+config.font_size = 17
 
 config.default_cursor_style = "SteadyUnderline"
 
@@ -136,8 +136,8 @@ config.keys = {
 -- activate tab using the tab number
 for i = 0, 9 do
 	table.insert(config.keys, {
-		key = tostring(i),
 		mods = "LEADER",
+		key = tostring(i),
 		action = wezterm.action.ActivateTab(i),
 	})
 end

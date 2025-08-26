@@ -10,18 +10,18 @@ current_ws=$(hyprctl activeworkspace -j | jq '.id')
 
 # ====== Calculate target ======
 if [[ "$DIRECTION" == "r+1" ]]; then
-    target_ws=$((current_ws + 1))
+  target_ws=$((current_ws + 1))
 elif [[ "$DIRECTION" == "r-1" ]]; then
-    target_ws=$((current_ws - 1))
+  target_ws=$((current_ws - 1))
 else
-    echo "Usage: $0 r+1 | r-1"
-    exit 1
+  echo "Usage: $0 r+1 | r-1"
+  exit 1
 fi
 
 # ====== Check bounds ======
 if ((target_ws < MIN_WS || target_ws > MAX_WS)); then
-    # Out of range: do nothing
-    exit 0
+  # Out of range: do nothing
+  exit 0
 fi
 
 # ====== Move active window ======
