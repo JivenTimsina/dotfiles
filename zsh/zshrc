@@ -7,6 +7,9 @@
 . ~/.dotfiles/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh
 . ~/.dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 . ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. ~/.dotfiles/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+echo -ne '\e[5 q'  # always set the cursor to underline
 
 # completion
 autoload -U compinit
@@ -48,6 +51,7 @@ export CLUTTER_BACKEND=wayland
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
 export MOZ_ENABLE_WAYLAND=1
 
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -56,3 +60,9 @@ export NVM_DIR="$HOME/.nvm"
 # cargo
 . "$HOME/.cargo/env"
 
+# go
+export PATH=$PATH:$HOME/.local/opt/go/bin
+
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
