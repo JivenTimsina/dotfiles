@@ -45,5 +45,21 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 # Executed before each prompt.
 add-zsh-hook precmd vcs_info
 
+# Default symbols for insert/normal mode
+ZSH_PROMPT_INSERT="❯"
+ZSH_PROMPT_NORMAL="❮"
+
+MODE_PROMPT=$ZSH_PROMPT_INSERT
+
+function zle-keymap-select {
+    if [[ $KEYMAP == vicmd ]]; then
+        MODE_PROMPT=$ZSH_PROMPT_NORMAL
+    else
+        MODE_PROMPT=$ZSH_PROMPT_INSERT
+    fi
+    zle reset-prompt
+}
+zle -N zle-keymap-select
+
 # Oxide prompt style with Nord light blue
-PROMPT=$'\n%{$nord_lightblue%} %~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{%F{white}%}.%{$oxide_red%}) %(!.#.❯) %{$oxide_reset_color%}'
+PROMPT=$'\n%{$nord_lightblue%} %~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{%F{white}%}.%{$oxide_red%}) ${MODE_PROMPT} %{$oxide_reset_color%}'

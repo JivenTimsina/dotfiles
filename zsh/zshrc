@@ -13,10 +13,17 @@ compinit
 . ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . ~/.dotfiles/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 
+#ovveride insert mode cursor
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+
+ZVM_VI_HIGHLIGHT_BACKGROUND=#555555
+
 # zsh-vi-mode hook for autosuggest-accept conflict
 function zvm_after_init() {
   bindkey '^_' autosuggest-accept
 }
+
 
 # suggestation color
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
@@ -51,6 +58,7 @@ export CLUTTER_BACKEND=wayland
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
 export MOZ_ENABLE_WAYLAND=1
 
+ZVM_VI_EDITOR=$EDITOR # vv into nvim
 
 # nvm
 export NVM_DIR="$HOME/.nvm"

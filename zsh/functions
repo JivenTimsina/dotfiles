@@ -15,7 +15,7 @@ install() {
 
 #remove packages
 remove() {
-  sudo pacman -R $1 -y
+  sudo pacman -R $1
 }
 
 # Extract various compressed file types

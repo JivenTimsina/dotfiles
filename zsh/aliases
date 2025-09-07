@@ -20,7 +20,6 @@ alias gco='git checkout'
 alias gcl='git clone'
 alias gpl='git pull'
 alias gps='git push'
-alias lg='lazygit'
 
 # custom
  alias ls='eza --icons=always'
