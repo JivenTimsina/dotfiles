@@ -1,3 +1,7 @@
+# completion
+autoload -Uz compinit
+compinit
+
 #source
 . ~/.dotfiles/zsh/theme
 . ~/.dotfiles/zsh/functions
@@ -7,22 +11,18 @@
 . ~/.dotfiles/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh
 . ~/.dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 . ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-. ~/.dotfiles/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+. ~/.dotfiles/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 
-echo -ne '\e[5 q'  # always set the cursor to underline
-
-# completion
-autoload -U compinit
-compinit
+# zsh-vi-mode hook for autosuggest-accept conflict
+function zvm_after_init() {
+  bindkey '^_' autosuggest-accept
+}
 
 # suggestation color
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
 
-#vi keybindings
-bindkey -v
-
-# bindkey to accept suggestation
-bindkey '^_' autosuggest-accept
+# #vi keybindings
+# bindkey -v
 
 # history
 HISTSIZE=1000
