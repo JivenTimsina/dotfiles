@@ -44,7 +44,7 @@ Plug 'tpope/vim-commentary' "comments
 call plug#end()
 
 "colorscheme
-colorscheme nord
+colorscheme habamax
 
 let NERDTreeShowHidden=1 "show hidden files in nerdtree
 
