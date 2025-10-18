@@ -14,5 +14,5 @@
 	path = nvim
 	url = https://github.com/JivenTimsina/nvim.git
 [submodule "/home/jiventimsina/.dotfiles/zsh/plugins/zsh-vi-mode"]
-	path = /home/jiventimsina/.dotfiles/zsh/plugins/zsh-vi-mode
-	url = git@github.com:jeffreytse/zsh-vi-mode.git
+	path = zsh/plugins/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode.git
