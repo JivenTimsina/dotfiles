@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WALLPAPERS_DIR="$HOME/.dotfiles/nord-wallpaper"
+WALLPAPERS_DIR="$HOME/.dotfiles/wallpapers"
 
 # choose random image from the WALLPAPERS_DIR and change wallpaper
 IMG=$(find "$WALLPAPERS_DIR" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) | shuf -n 1)
