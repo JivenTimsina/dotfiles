@@ -7,12 +7,6 @@
 [submodule "zsh/plugins/zsh-completions"]
 	path = zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "nvim"]
-	path = nvim
-	url = https://github.com/JivenTimsina/nvim.git
 [submodule "/home/jiventimsina/.dotfiles/zsh/plugins/zsh-vi-mode"]
 	path = zsh/plugins/zsh-vi-mode
 	url = https://github.com/jeffreytse/zsh-vi-mode.git
-[submodule "wallpapers"]
-	path = wallpapers
-	url = https://github.com/JivenTimsina/wallpapers
