@@ -8,8 +8,8 @@
 	path = zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
 [submodule "nord-wallpaper"]
-	path = nord-wallpaper
-	url = https://github.com/JivenTimsina/nord-wallpaper
+	path = wallpapers
+	url = https://github.com/JivenTimsina/wallpapers
 [submodule "nvim"]
 	path = nvim
 	url = https://github.com/JivenTimsina/nvim.git
