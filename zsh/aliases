@@ -22,7 +22,6 @@ alias gpl='git pull'
 alias gps='git push'
 
 # custom
- alias ls='eza --icons=always'
  alias ..='cd ..'
  alias ...='cd ../..'
  alias nv='nvim'

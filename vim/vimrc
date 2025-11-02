@@ -52,7 +52,7 @@ let NERDTreeShowHidden=1 "show hidden files in nerdtree
 "nordtree
 nnoremap <silent><leader>e :NERDTreeToggle<CR>
 "toggle terminal
-nnoremap <silent><C-/> :below term<CR>
+nnoremap <silent><C-CR> :below term<CR>
 "select all
 nnoremap <C-a> ggvG$ "select all
 "copy to clipboard
