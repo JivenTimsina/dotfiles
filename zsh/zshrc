@@ -69,8 +69,21 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 
 # go
-export PATH=$PATH:$HOME/.local/opt/go/bin
+export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
 
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/jiven/.dart-cli-completion/zsh-config.zsh ]] && . /home/jiven/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+
+# bun completions
+[ -s "/home/jiven/.bun/_bun" ] && source "/home/jiven/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
