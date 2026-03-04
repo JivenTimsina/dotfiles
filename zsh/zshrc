@@ -39,15 +39,11 @@ HISTFILE=~/.zsh_history
 # options
 setopt autocd sharehistory histignorealldups
 
-#run fastfetch once
-if [ -z "$FASTFETCH_RAN" ]; then
-    fastfetch
-    export FASTFETCH_RAN=1
-fi
-
+# fzf
+source <(fzf --zsh)
 
 # Env
-export TERMINAL=wezterm
+export TERMINAL=kitty
 export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export MANPAGER="nvim +Man!"
@@ -71,15 +67,7 @@ export NVM_DIR="$HOME/.nvm"
 # go
 export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
 
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[[ -f /home/jiven/.dart-cli-completion/zsh-config.zsh ]] && . /home/jiven/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
-
+export PATH=$PATH:$HOME/.local/bin
 
 # bun completions
 [ -s "/home/jiven/.bun/_bun" ] && source "/home/jiven/.bun/_bun"

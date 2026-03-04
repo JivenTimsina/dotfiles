@@ -8,16 +8,6 @@ mkcd() {
   mkdir -p "$1" && cd "$1" || echo "failed to create/navigate"
 }
 
-#install packages
-install() {
-  sudo pacman -S $1 -y
-}
-
-#remove packages
-remove() {
-  sudo pacman -R $1
-}
-
 # Extract various compressed file types
 extract() {
   if [ -f "$1" ]; then
@@ -38,24 +28,6 @@ extract() {
   else
     echo "'$1' is not a valid file"
   fi
-}
-
-# open current git repository in github 
-gopen() {
-  # Get the remote URL of the Git repository
-  remote_url=$(git config --get remote.origin.url 2>/dev/null)
-
-  # Check if inside a Git repository
-  if [[ -z "$remote_url" ]]; then
-    echo "Not a Git repository!"
-    return 1
-  fi
-
-  # Extract GitHub repository URL
-  github_url=$(echo "$remote_url" | sed -E 's/^git@github.com:/https:\/\/github.com\//; s/\.git$//')
-
-  # Open the GitHub URL
-    xdg-open "$github_url"
 }
 
 #yazi
