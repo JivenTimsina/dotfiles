@@ -1,0 +1,281 @@
+### WINDOW ###
+default_border none
+default_floating_border none
+focus_follows_mouse yes
+for_window [app_id="launcher"] floating enable, resize set 800 400, move position center
+xwayland enable
+
+### VARIABLES ###
+# Mod4 = Super
+set $mod Mod4
+set $alt Mod1 
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Applications
+set $term kitty
+set $browser zen-browser
+set $discord discord
+set $spotify spotify
+
+# Menu
+set $menu kitty --class launcher -e bash -c ' \
+compgen -c | \
+sort -u | \
+fzf --height 60% --border rounded --layout reverse \
+    --header "Menu" --header-first --header-border bottom | \
+xargs -r swaymsg exec \
+'
+
+# Clipboard
+set $clipboard_picker kitty --class "launcher" -e bash -c "exec clipman pick --tool=CUSTOM --tool-args='fzf --height 60% --border rounded --layout reverse --header="Clipboard" --header-first --header-border bottom' && wl-copy"
+
+
+### OUTPUT CONFIGURATION ###
+
+# output * bg $HOME/.dotfiles/wallpapers/wall/967678.jpg fill
+output eDP-1 mode 2880x1800@90Hz scale 2 pos 1920 0
+
+exec swayidle -w \
+         timeout 600 'swaylock'\
+         timeout 900 'swaymsg "output * power off"' \
+				 resume 'swaymsg "output * power on"' \
+				 before-sleep 'swaylock'
+
+### INPUT CONFIGURATION ###
+  input type:touchpad {
+      dwt enabled
+      tap enabled
+      natural_scroll enabled
+      middle_emulation enabled
+  }
+  input type:keyboard {
+      xkb_layout "eu"
+  }
+
+### KEY BINDINGS ###
+
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+		# browser
+		bindsym $mod+b exec $browser
+
+		# spotify
+		bindsym $mod+s exec $spotify
+
+		# discord
+		bindsym $mod+d exec $discord
+
+    # Kill focused window
+    bindsym $mod+q kill
+
+    # launcher
+    bindsym $mod+space exec $menu
+
+		# Copy item from clipboard
+		bindsym $mod+v exec $clipboard_picker 
+
+		# screenshot whole screen
+		bindsym Print exec ~/.dotfiles/scripts/screenshot.sh
+
+		# screenshot a region
+		bindsym $mod+Print exec ~/.dotfiles/scripts/screenshot_area.sh
+
+		# color picker
+		bindsym $mod+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- |		tail -n 1 | awk '{print $3}' | wl-copy && notify-send "Copied to Clipboard" $(wl-paste)
+
+		# change wallpaper
+		bindsym $mod+Shift+w exec ~/.dotfiles/scripts/change_wallpaper.sh
+
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+r reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaymsg exit
+
+### BINDSWITCH ###
+# lock when lid is closed
+bindswitch lid:toggle exec swaylock 
+
+### GESTURE ###
+# Swipe workspaces
+bindgesture --no-warn swipe:4:right exec swaymsg workspace $(swaymsg -t get_workspaces | jq '.[] | select(.focused).num | if . > 1 then . - 1 else 1 end')
+ 
+bindgesture --no-warn swipe:4:left exec swaymsg workspace $(swaymsg -t get_workspaces | jq '.[] | select(.focused).num | if . < 9 then . + 1 else 9 end')
+
+
+### MOVING AROUND ###
+
+    # Move your focus around
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+
+
+### WORKSPACES ###
+
+# Next Workspace
+bindsym $mod+l exec swaymsg workspace $(swaymsg -t get_workspaces | jq '.[] | select(.focused).num | if . < 9 then . + 1 else 9 end')
+
+# Previous Workspace
+bindsym $mod+h exec swaymsg workspace $(swaymsg -t get_workspaces | jq '.[] | select(.focused).num | if . > 1 then . - 1 else 1 end')
+
+		unbindsym $mod+Shift+h
+		unbindsym $mod+Shift+l
+
+		# Move container to workspace
+		bindsym $mod+Shift+l exec ~/.dotfiles/scripts/move_window.sh next
+		bindsym $mod+Shift+h exec ~/.dotfiles/scripts/move_window.sh prev
+
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    # Note: workspaces can have any name you want, not just numbers.
+
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $alt+return fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    # bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+#
+# Utilities:
+#
+		bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+
+		bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+		bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+		bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+		bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+
+# exec at startup
+
+# Notification
+exec mako
+
+# Wallpaper
+exec rm -rf ~/.cache/awww/
+exec awww-daemon && awww clear
+exec ~/.dotfiles/scripts/change_wallpaper.sh
+
+# Clipboard
+exec wl-paste -t text --watch clipman store --no-persist
+
+# Status Bar:
+
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+		status_command i3status-rs
+		tray_output none
+		height 25
+		font pango: JetBrainsMono Nerd Font 12
+    colors {
+        statusline #E1F2FE
+				background #00000000
+        inactive_workspace #00000000 #00000000 #E1F2FE
+				focused_workspace #F78E69 #F78E69 #ffffff
+    }
+}
+
+include /etc/sway/config.d/*

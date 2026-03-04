@@ -1,0 +1,24 @@
+[open]
+rules = [
+    { mime = "text/*", use = "text" },
+    { mime = "image/*", use = "image" },
+    { mime = "video/*", use = "video" },
+    { mime = "application/pdf", use = "pdf" },
+]
+
+[opener]
+text = [
+	{ run = "nvim \"$@\"", block = true}
+]
+
+image = [
+    { run = "imv \"$@\" >/dev/null 2>&1 & disown", desc = "imv", block = false },
+]
+
+video = [
+	{ run = "mpv \"$@\" >/dev/null 2>&1 & disown", desc = "mpv", block = false }
+]
+
+pdf = [
+	{ run = "zathura \"$@\" >/dev/null 2>&1 & disown", desc = "zathura", block = false } 
+]
