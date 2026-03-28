@@ -1,5 +1,5 @@
 daemonize
-image=~/.dotfiles/wallpapers/wall/screenlock.jpg
+image=~/.dotfiles/swaylock/screenlock.jpg
 scaling=fill
 indicator-idle-visible
 color=000000
