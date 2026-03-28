@@ -1,10 +1,10 @@
 font=JetBrainsMono 12
-background-color=#303447
+background-color=#00000000
 text-color=#ffffff
 width=400
 height=200
-border-color=#F78E69
-border-radius=6
+border-color=#F66E0D
+border-radius=3
 max-icon-size=30
 icon-border-radius=12
 default-timeout=4000
