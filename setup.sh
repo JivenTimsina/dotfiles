@@ -24,4 +24,4 @@ sudo ln -sf "$DOTFILES/mako" ~/.config/mako
 sudo ln -sf "$DOTFILES/sway" ~/.config/sway
 sudo ln -sf "$DOTFILES/swaylock" ~/.config/swaylock
 sudo ln -sf "$DOTFILES/yazi" ~/.config/yazi
-
+sudo ln -sf "$DOTFILES/grub/grub" /etc/default/grub
