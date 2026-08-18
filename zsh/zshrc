@@ -75,3 +75,10 @@ export PATH=$PATH:$HOME/.local/bin
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/home/jiven/.opencode/bin:$PATH
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/jiven/.local/bin:$PATH"

@@ -20,7 +20,6 @@ set $right l
 set $term kitty
 set $browser zen-browser
 set $discord discord
-set $spotify spotify
 
 # Menu
 set $menu kitty --class launcher -e bash -c ' \
@@ -38,7 +37,8 @@ set $clipboard_picker kitty --class "launcher" -e bash -c "exec clipman pick --t
 ### OUTPUT CONFIGURATION ###
 
 # output * bg $HOME/.dotfiles/wallpapers/wall/967678.jpg fill
-output eDP-1 mode 2880x1800@90Hz scale 2 pos 1920 0
+output eDP-1 mode 2880x1800@90Hz scale 2 pos 0 0
+output DP-1 mode 1366x768@60Hz scale 1 pos 1920 0
 
 exec swayidle -w \
          timeout 600 'swaylock'\
@@ -64,9 +64,6 @@ exec swayidle -w \
 
 		# browser
 		bindsym $mod+b exec $browser
-
-		# spotify
-		bindsym $mod+s exec $spotify
 
 		# discord
 		bindsym $mod+d exec $discord
@@ -250,6 +247,14 @@ bindsym $mod+r mode "resize"
 
 
 # exec at startup
+
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+
+#keyring
+
+exec_always /usr/bin/gnome-keyring-daemon --start --components=secrets,ssh
+exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
 # Notification
 exec mako
