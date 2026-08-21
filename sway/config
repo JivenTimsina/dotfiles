@@ -5,6 +5,8 @@ focus_follows_mouse yes
 for_window [app_id="launcher"] floating enable, resize set 800 400, move position center
 xwayland enable
 
+seat seat0 xcursor_theme Adwaita 24
+
 ### VARIABLES ###
 # Mod4 = Super
 set $mod Mod4
@@ -18,8 +20,19 @@ set $right l
 
 # Applications
 set $term kitty
-set $browser zen-browser
+set $browser app.zen_browser.zen
 set $discord discord
+
+
+# Window rules for launcher
+for_window [app_id="launcher"] {
+    floating enable
+    sticky enable
+    move position center
+    resize set 600px 400px
+    border pixel 0
+    focus
+}
 
 # Menu
 set $menu kitty --class launcher -e bash -c ' \
@@ -60,7 +73,7 @@ exec swayidle -w \
 ### KEY BINDINGS ###
 
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $term --start-as=fullscreen
 
 		# browser
 		bindsym $mod+b exec $browser
@@ -84,11 +97,10 @@ exec swayidle -w \
 		bindsym $mod+Print exec ~/.dotfiles/scripts/screenshot_area.sh
 
 		# color picker
-		bindsym $mod+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- |		tail -n 1 | awk '{print $3}' | wl-copy && notify-send "Copied to Clipboard" $(wl-paste)
+		bindsym $mod+p exec ~/.dotfiles/scripts/color_picker.sh
 
 		# change wallpaper
 		bindsym $mod+Shift+w exec ~/.dotfiles/scripts/change_wallpaper.sh
-
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -254,10 +266,11 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 #keyring
 
 exec_always /usr/bin/gnome-keyring-daemon --start --components=secrets,ssh
-exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Notification
 exec mako
+
 
 # Wallpaper
 exec rm -rf ~/.cache/awww/

@@ -55,30 +55,3 @@ export ELECTRON_OZONE_PLATFORM_HINT=wayland
 export MOZ_ENABLE_WAYLAND=1
 
 ZVM_VI_EDITOR=$EDITOR # vv into nvim
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# cargo
-. "$HOME/.cargo/env"
-
-# go
-export PATH=$PATH:/usr/local/go/bin:$HOME/.go/bin
-
-export PATH=$PATH:$HOME/.local/bin
-
-# bun completions
-[ -s "/home/jiven/.bun/_bun" ] && source "/home/jiven/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# opencode
-export PATH=/home/jiven/.opencode/bin:$PATH
-
-
-# Added by Antigravity CLI installer
-export PATH="/home/jiven/.local/bin:$PATH"

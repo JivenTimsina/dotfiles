@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Ensure the daemon is responsive
 until awww query &> /dev/null; do
