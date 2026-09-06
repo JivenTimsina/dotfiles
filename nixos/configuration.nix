@@ -55,6 +55,12 @@
      pulse.enable = true;
    };
 
+   # bluetooth
+   hardware.bluetooth.enable = true;
+   hardware.bluetooth.powerOnBoot = true;
+
+   services.blueman.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
    services.libinput.enable = true;
 
@@ -67,6 +73,10 @@
      tree
    ];
  };
+
+ boot.kernelParams = [
+  "video=DP-1:1366x768@60e"
+];
 
    	programs.firefox.enable = true;
 	programs.sway.enable = true;
@@ -88,6 +98,14 @@ xdg.portal = {
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = [ "wlr" "gtk" ];
   };
+  nixpkgs.config.allowUnfree = true;
+
+  programs.obs-studio = {
+  	enable = true;
+	plugins = with pkgs.obs-studio-plugins; [
+		droidcam-obs
+	];
+  };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -101,6 +119,7 @@ xdg.portal = {
 	git
 	kitty
 	neovim
+	discord
 	zsh
 	libnotify
 	adwaita-icon-theme
@@ -112,16 +131,27 @@ xdg.portal = {
 	mpv	
 	imv
 	bat
+	fastfetch
 	yazi
 	imagemagick
+	wlr-randr
 	wl-clipboard
-	obs-studio
 	fzf
+	pavucontrol
+	fuzzel
 	clipman
 	grim
 	slurp
-	gammastep
 	calc
+	blueman
+	gammastep
+
+	# TUI fun 
+	unimatrix
+	btop
+	tty-clock
+	cava
+
 
 	# development
 

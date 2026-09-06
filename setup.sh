@@ -2,11 +2,6 @@
 
 set -e # Exit on any error
 
-# exec as sudo
-if [[ $EUID -ne 0 ]]; then
-    exec sudo "$0" "$@"
-fi
-
 # create symlinks
 DOTFILES="$HOME/.dotfiles"
 if [[ ! -d "$DOTFILES" ]]; then
@@ -14,10 +9,6 @@ if [[ ! -d "$DOTFILES" ]]; then
   exit 1
 fi
 
-echo "Creating symlinks..."
-
-ln -sfn "$DOTFILES/nixos" /etc/nixos
-ln -sf "$DOTFILES/wezterm/wezterm.lua" ~/.wezterm.lua
 ln -sf "$DOTFILES/nvim" ~/.config/nvim
 ln -sf "$DOTFILES/zsh/zshrc" ~/.zshrc
 ln -sf "$DOTFILES/vim/vimrc" ~/.vimrc
@@ -28,3 +19,5 @@ ln -sf "$DOTFILES/mako" ~/.config/mako
 ln -sf "$DOTFILES/sway" ~/.config/sway
 ln -sf "$DOTFILES/swaylock" ~/.config/swaylock
 ln -sf "$DOTFILES/yazi" ~/.config/yazi
+ln -sf "$DOTFILES/btop" ~/.config/btop
+sudo ln -sf "$DOTFILES/nixos" /etc/nixos
