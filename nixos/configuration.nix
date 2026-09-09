@@ -109,7 +109,7 @@ xdg.portal = {
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-   environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
      	vim
 	wget
 	greetd
@@ -120,6 +120,7 @@ xdg.portal = {
 	kitty
 	neovim
 	discord
+	spotify
 	zsh
 	libnotify
 	adwaita-icon-theme
@@ -137,6 +138,12 @@ xdg.portal = {
 	wlr-randr
 	wl-clipboard
 	fzf
+	localsend
+	cliamp
+	yt-dlp
+	ffmpeg
+	bitwarden-desktop
+	tmux
 	pavucontrol
 	fuzzel
 	clipman
@@ -201,6 +208,7 @@ xdg.portal = {
    fonts = {
 	   packages = with pkgs; [
 		   nerd-fonts.jetbrains-mono
+		   times-newer-roman
 	   ];
    };
 
